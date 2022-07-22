@@ -4,9 +4,9 @@ using System.Threading;
 
 namespace ProblematicProblem
 {
-     class Program
+    class Program
     {
-        
+
         static bool cont = true;
         static List<string> activities = new List<string>() { "Movies", "Paintball", "Bowling", "Lazer Tag", "LAN Party", "Hiking", "Axe Throwing", "Wine Tasting" };
         static void Main(string[] args)
@@ -38,7 +38,7 @@ namespace ProblematicProblem
             Console.WriteLine();
 
             Console.Write("Would you like to see the current list of activities? Sure/No thanks: ");
-            bool seeList = (Console.ReadLine().ToLower() == "sure")? true : false;
+            bool seeList = (Console.ReadLine().ToLower() == "sure") ? true : false;
 
             if (seeList)
             {
@@ -65,40 +65,40 @@ namespace ProblematicProblem
                     }
                     Console.WriteLine();
                     Console.WriteLine("Would you like to add more? yes/no: ");
-                    addToList = (Console.ReadLine().ToLower() == "yes")? true : false;
+                    addToList = (Console.ReadLine().ToLower() == "yes") ? true : false;
                 }
-                }
+            }
 
-                while (cont)
+            while (cont)
+            {
+                Console.Write("Connecting to the database");
+                for (int i = 0; i < 10; i++)
                 {
-                    Console.Write("Connecting to the database");
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.Write(". ");
-                        Thread.Sleep(500);
-                    }
-                            Console.WriteLine();
-                            Console.Write("Choosing your random activity");
-                    for (int i = 0; i < 9; i++)
-                    {
-                        Console.Write(". ");
-                        Thread.Sleep(500);
-                    }
-                            Console.WriteLine();
-                            int randomNumber = rng.Next(activities.Count);
-                            string randomActivity = activities[randomNumber];
-                            if (userAge < 21 && randomActivity == "Wine Tasting")
-                    {
-                        Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
-                        Console.WriteLine("Pick something else!");
-                        activities.Remove(randomActivity);
-                        //string randomNumber = rng.Next(activities.Count);
-                        //string randomActivity = activities[randomNumber];
-                    }
-                            Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
-                            Console.WriteLine();
-                            cont = (Console.ReadLine().ToLower() == "redo") ? true : false;
+                    Console.Write(". ");
+                    Thread.Sleep(500);
+                }
+                Console.WriteLine();
+                Console.Write("Choosing your random activity");
+                for (int i = 0; i < 9; i++)
+                {
+                    Console.Write(". ");
+                    Thread.Sleep(500);
+                }
+                Console.WriteLine();
+                int randomNumber = rng.Next(activities.Count);
+                string randomActivity = activities[randomNumber];
+                if (userAge < 21 && randomActivity == "Wine Tasting")
+                {
+                    Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
+                    Console.WriteLine("Pick something else!");
+                    activities.Remove(randomActivity);
+                    randomNumber = rng.Next(activities.Count);
+                    randomActivity = activities[randomNumber];
+                }
+                Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
+                Console.WriteLine();
+                cont = (Console.ReadLine().ToLower() == "redo") ? true : false;
             }
         }
-     }
+    }
 }
